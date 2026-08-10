@@ -1,0 +1,143 @@
+@import "tailwindcss";
+
+/*
+  Nexalys -- design tokens & animations
+  -------------------------------------
+  Grounded in the product itself: an econometric measurement tool.
+  The palette reads as a calibration instrument (graph-paper canvas,
+  navy ink, brass/amber signal) rather than a generic SaaS gradient.
+*/
+@theme {
+  --font-display: "Fraunces", ui-serif, Georgia, serif;
+  --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+  --color-canvas: #EEF2F8;
+  --color-canvas-line: #C7D0DE;
+  --color-ink: #0B1220;
+  --color-ink-soft: #4A5670;
+  --color-signal: #E8A33D;
+  --color-signal-deep: #C77F1E;
+  --color-wire: #0F6E6B;
+  --color-band: #1E8E5A;
+  --color-surface: #FFFFFF;
+  --color-danger: #B3452C;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-body);
+    color: var(--color-ink);
+  }
+
+  body {
+    background-color: var(--color-canvas);
+  }
+
+  ::selection {
+    background-color: var(--color-signal);
+    color: var(--color-ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-signal-deep);
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+/* Custom UI Utilities */
+@utility shadow-xs {
+  box-shadow: 0 1px 2px 0 rgb(11 18 32 / 0.05);
+}
+
+/* --- ANIMATIONS SAAS MODERNES --- */
+
+/* Apparition fluide au chargement */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes popIn {
+  0% { opacity: 0; transform: scale(0.95); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+/* Pulse doux pour les métriques & voyants */
+@keyframes pulseSubtle {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.06); opacity: 0.85; }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-pop-in {
+  animation: popIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-pulse-subtle {
+  animation: pulseSubtle 3s ease-in-out infinite;
+}
+
+/* Stagger delays for cascading list animations */
+.stagger-1 { animation-delay: 0.05s; }
+.stagger-2 { animation-delay: 0.10s; }
+.stagger-3 { animation-delay: 0.15s; }
+.stagger-4 { animation-delay: 0.20s; }
+
+/* Micro-interaction au survol des cartes */
+.card-hover-effect {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.card-hover-effect:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 24px -10px rgba(11, 18, 32, 0.08);
+}
+
+/* Graph-paper grid backdrop for the brand panel */
+.grid-canvas {
+  background-image:
+    linear-gradient(var(--color-canvas-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-canvas-line) 1px, transparent 1px);
+  background-size: 28px 28px;
+  background-position: -1px -1px;
+}
+
+/* One-shot draw-in for the calibration trace SVG path */
+@keyframes trace-draw {
+  from { stroke-dashoffset: var(--trace-length, 900); }
+  to { stroke-dashoffset: 0; }
+}
+.trace-path {
+  stroke-dasharray: var(--trace-length, 900);
+  animation: trace-draw 2.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Gentle pulse on the "current reading" marker */
+@keyframes reading-pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.6); opacity: 0.35; }
+}
+.reading-pulse {
+  transform-origin: center;
+  animation: reading-pulse 2.4s ease-in-out infinite;
+  animation-delay: 2.2s;
+}
+
+/* Ticking coefficient readout crossfade */
+@keyframes readout-fade {
+  0%, 8% { opacity: 0; transform: translateY(4px); }
+  14%, 86% { opacity: 1; transform: translateY(0); }
+  92%, 100% { opacity: 0; transform: translateY(-4px); }
+}
