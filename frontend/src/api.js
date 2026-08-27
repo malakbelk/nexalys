@@ -5,7 +5,7 @@
   n'a jamais a coder l'URL du backend en dur.
 */
 
-const BASE = "/api";
+   const BASE = "/backend";
 
 class ApiError extends Error {
   constructor(message, status) {
