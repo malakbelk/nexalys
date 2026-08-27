@@ -1,6 +1,6 @@
 {
   "rewrites": [
-    { "source": "/api/:path*", "destination": "https://nexalys-backend-qs1a.onrender.com/:path*" },
-    { "source": "/((?!api).*)", "destination": "/index.html" }
+    { "source": "/backend/:path*", "destination": "https://nexalys-backend-qs1a.onrender.com/:path*" },
+    { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
