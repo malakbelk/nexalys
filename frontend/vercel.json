@@ -1,6 +1,7 @@
 {
   "routes": [
     { "src": "/backend/(.*)", "dest": "https://nexalys-backend-qs1a.onrender.com/$1" },
+    { "handle": "filesystem" },
     { "src": "/(.*)", "dest": "/index.html" }
   ]
 }
