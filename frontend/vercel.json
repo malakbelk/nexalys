@@ -1,14 +1,6 @@
 {
   "rewrites": [
     { "source": "/backend/:path*", "destination": "https://nexalys-backend-qs1a.onrender.com/:path*" },
-    { "source": "/(.*)", "destination": "/index.html" }
-  ],
-  "headers": [
-    {
-      "source": "/backend/:path*",
-      "headers": [
-        { "key": "Cache-Control", "value": "no-store, must-revalidate" }
-      ]
-    }
+    { "source": "/((?!backend/).*)", "destination": "/index.html" }
   ]
 }
