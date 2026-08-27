@@ -1,6 +1,6 @@
 {
-  "rewrites": [
-    { "source": "/backend/:path*", "destination": "https://nexalys-backend-qs1a.onrender.com/:path*" },
-    { "source": "/((?!backend/).*)", "destination": "/index.html" }
+  "routes": [
+    { "src": "/backend/(.*)", "dest": "https://nexalys-backend-qs1a.onrender.com/$1" },
+    { "src": "/(.*)", "dest": "/index.html" }
   ]
 }
